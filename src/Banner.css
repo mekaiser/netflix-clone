@@ -35,7 +35,6 @@
     #111
   );
 }
-
 .banner__button {
   cursor: pointer;
   color: #fff;
@@ -43,15 +42,17 @@
   border: none;
   font-weight: 700;
   border-radius: 0.2vw;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0.6rem 2rem;
   margin-right: 1rem;
-  padding-top: 0.5rem;
-  background-color: rgba(51, 51, 51, 0.5);
-  padding-bottom: 0.5rem;
 }
-
-.banner__button:hover {
+.banner__playButton {
+  background-color: #ed0000;
+}
+.banner__listButton {
+  background-color: black;
+}
+.banner__playButton:hover,
+.banner__listButton:hover {
   color: #000;
   background-color: #e6e6e6;
   transition: all 0.2s;

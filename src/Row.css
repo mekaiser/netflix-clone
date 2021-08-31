@@ -1,6 +1,7 @@
 .row {
   color: white;
   margin-left: 20px;
+  margin-top: 30px;
 }
 .row__posters {
   display: flex;
@@ -12,20 +13,26 @@
   display: none;
 }
 .row__poster {
-  max-height: 100px;
+  width: auto;
+  max-height: 150px;
   object-fit: contain;
-  margin-right: 10px;
-  width: 100%;
+  margin-right: 12px;
   transition: transform 450ms;
 }
 .row__poster:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
   opacity: 1;
 }
 .row__posterLarge {
-  max-height: 250px;
+  width: auto;
+  max-height: 320px;
 }
 .row__posterLarge:hover {
-  transform: scale(1.09);
+  transform: scale(1.07);
   opacity: 1;
+}
+.row__poster__name {
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.5rem;
 }
