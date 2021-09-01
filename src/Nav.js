@@ -1,11 +1,13 @@
 // used rfce to make this skeleton
 
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import netflixLogo from "./images/netflix-logo.png";
 import "./Nav.css";
 
 function Nav() {
   const [show, handleShow] = useState(false);
+  const history = useHistory();
 
   const transitionNavbar = () => {
     if (window.scrollY > 100) {
@@ -15,16 +17,22 @@ function Nav() {
     }
   };
 
-  useEffect(()=>{
-      window.addEventListener("scroll", transitionNavbar);
-      return() => window.removeEventListener("scroll", transitionNavbar);
-  }, [])
+  useEffect(() => {
+    window.addEventListener("scroll", transitionNavbar);
+    return () => window.removeEventListener("scroll", transitionNavbar);
+  }, []);
   return (
     <div className={`nav ${show && "nav__black"}`}>
       <div className="nav__contents">
-        <img className="nav__logo" src={netflixLogo} alt="" />
+        <img
+          onClick={() => history.push("/")}
+          className="nav__logo"
+          src={netflixLogo}
+          alt=""
+        />
 
         <img
+          onClick={() => history.push("/profile")}
           className="nav__avatar"
           src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png"
           alt=""

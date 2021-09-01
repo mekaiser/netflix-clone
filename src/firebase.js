@@ -1,8 +1,19 @@
+import { initializeApp } from 'firebase/app';
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
-    apiKey: "AIzaSyC9W9ftnmnV2CgW6H8AlT1gWOXr5SyEIjw",
-    authDomain: "netflix-clone-k0.firebaseapp.com",
-    projectId: "netflix-clone-k0",
-    storageBucket: "netflix-clone-k0.appspot.com",
-    messagingSenderId: "270757480657",
-    appId: "1:270757480657:web:f235b1aafb126ef2245df0"
-  };
+  apiKey: "AIzaSyBENKVP-Vmc9uSMQJxl4ZnzBqfLi3Sfojg",
+  authDomain: "netflixclonex.firebaseapp.com",
+  projectId: "netflixclonex",
+  storageBucket: "netflixclonex.appspot.com",
+  messagingSenderId: "1038082934430",
+  appId: "1:1038082934430:web:0a0aad04c386b55efa9d8f",
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore();
+const auth = getAuth();
+
+export { auth };
+export default db;
