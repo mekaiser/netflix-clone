@@ -91,3 +91,31 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+/* Animation */
+.loginScreen__animation {
+  -webkit-animation: transitionedFadeIn 0.5s ease-out;
+  animation: transitionedFadeIn 0.5s ease-out;
+}
+
+@-webkit-keyframes transitionedFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes transitionedFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

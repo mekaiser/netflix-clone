@@ -1,43 +1,96 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import React, { useRef } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "firebase/auth";
+import React, { useRef, useState } from "react";
 import { auth } from "../firebase";
 import "./SignupScreen.css";
 
 function SignupScreen() {
+  const [accountSignUp, setAccountSignUp] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const register = (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value).then((authUser)=> {
-      console.log(authUser);
-    }).catch(error => {
-      alert(error.message);
-    })
-  };
-
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value).then((authUser)=> {
-      console.log(authUser);
-    }).catch(error => {
-      alert(error.message);
-    })
+    if (accountSignUp) {
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((authUser) => {
+          console.log(authUser);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    } 
+    else if (!accountSignUp) {
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
+        .then((authUser) => {
+          console.log(authUser);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
+    }
   };
   return (
-    <div className="signupScreen">
-      <form>
+    <div className="signupScreen signupScreen__animation">
+      <form onSubmit={formSubmit}>
         <h1>Sign In</h1>
-        <input ref={emailRef} placeholder="Email" type="Email" />
-        <input ref={passwordRef} placeholder="Password" type="passwords" />
-        <button type="submit" onClick={signIn}>
-          Sign In
-        </button>
+        <input
+          className="signupScreen__input"
+          ref={emailRef}
+          placeholder="Email"
+          type="Email"
+          required
+        />
+        <input
+          className="signupScreen__input"
+          ref={passwordRef}
+          placeholder="Password"
+          type="password"
+          required
+        />
+        {accountSignUp ? (
+          <input
+            className="signupScreen__submit"
+            type="submit"
+            value="Sign Up"
+          />
+        ) : (
+          <input
+            className="signupScreen__submit"
+            type="submit"
+            value="Sign In"
+          />
+        )}
+
         <h4>
-          <span className="signupScreen__gray">New to Netflix? </span>
-          <span className="signupScreen__link" onClick={register}>
-            Sign Up now.
+          <span className="signupScreen__gray">
+            {accountSignUp ? "Already have an account?" : "New to Netflix?"}{" "}
           </span>
+          {accountSignUp ? (
+            <span
+              className="signupScreen__link"
+              onClick={() => setAccountSignUp(false)}
+            >
+              Sign In.
+            </span>
+          ) : (
+            <span
+              className="signupScreen__link"
+              onClick={() => setAccountSignUp(true)}
+            >
+              Sign Up now.
+            </span>
+          )}
         </h4>
       </form>
     </div>

@@ -4,6 +4,11 @@ import SignupScreen from "./SignupScreen";
 
 function LoginScreen() {
   const [signIn, setSignIn] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(false);
+  const hadnleDomLoad = (e) => {
+    setDomLoaded(true);
+  };
+  window.addEventListener("DOMContentLoaded", hadnleDomLoad);
   return (
     <div className="loginScreen">
       <div className="loginScreen__background">
@@ -23,13 +28,21 @@ function LoginScreen() {
           <SignupScreen />
         ) : (
           <>
-            <h1>Unlimited films, TV programmes and more.</h1>
-            <h2>Watch anywhere. Cancel at any time.</h2>
-            <h3>
+            <h1 className={`${domLoaded && "loginScreen__animation"}`}>
+              Unlimited films, TV programmes and more.
+            </h1>
+            <h2 className={`${domLoaded && "loginScreen__animation"}`}>
+              Watch anywhere. Cancel at any time.
+            </h2>
+            <h3 className={`${domLoaded && "loginScreen__animation"}`}>
               Ready to watch? Enter your email to create or restart your
               membership.
             </h3>
-            <div className="loginScreen__input">
+            <div
+              className={`loginScreen__input ${
+                domLoaded && "loginScreen__animation"
+              }`}
+            >
               <form>
                 <input type="email" placeholder="Email Address" />
                 <button
