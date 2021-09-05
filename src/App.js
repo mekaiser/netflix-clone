@@ -1,16 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { login, logout, selectUser } from "./features/userSlice";
 import { auth } from "./firebase";
 import HomeScreen from "./screens/HomeScreen";
+import Loader from './screens/Loader';
 import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
-  const user = useSelector(selectUser);
+  const [userLoggedInStatusFound, setUserLoggedInStatusFound] = useState(false);
+  const user = useSelector(selectUser);  
   const dispatch = useDispatch();
+  setTimeout(() =>{
+    setUserLoggedInStatusFound(true)
+  }, 2000);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
@@ -31,7 +36,9 @@ function App() {
   return (
     <div className="app">
       <Router>
-        {!user ? (
+        {!userLoggedInStatusFound ? 
+          <Loader/> :
+        (!user ? (
           <LoginScreen />
         ) : (
           <Switch>
@@ -42,7 +49,7 @@ function App() {
               <HomeScreen />
             </Route>
           </Switch>
-        )}
+        ))}
       </Router>
     </div>
   );
