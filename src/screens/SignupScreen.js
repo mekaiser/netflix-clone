@@ -72,7 +72,7 @@ function SignupScreen() {
           />
         )}
 
-        <h4>
+        <h5>
           <span className="signupScreen__gray">
             {accountSignUp ? "Already have an account?" : "New to Netflix?"}{" "}
           </span>
@@ -91,7 +91,7 @@ function SignupScreen() {
               Sign Up now.
             </span>
           )}
-        </h4>
+        </h5>
       </form>
     </div>
   );
