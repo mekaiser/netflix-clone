@@ -1,0 +1,27 @@
+.simpleStripeCardForm___form {
+  width: 100%;
+}
+.simpleStripeCardForm___form h2 {
+  color: #000;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #97a6b2;
+}
+.simpleStripeCardForm___form label {
+  display: block;
+  color: black;
+}
+.simpleStripeCardForm___form button {
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  padding: 5px 20px;
+  margin-top: 5px;
+}
+.cardElement {
+  background-color: rgb(231, 231, 231);
+  padding: 8px 12px;
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

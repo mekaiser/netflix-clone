@@ -1,0 +1,58 @@
+.paymentScreen__container {
+  height: 100vh;
+  background-color: white;
+}
+
+.paymentScreen__container__row {
+  margin: 0;
+  padding: 0;
+}
+
+.paymentScreen__container__row > div {
+  padding: 0;
+}
+
+.paymentScreen__subscription {
+  height: 100vh;
+  width: 100%;
+  background-color: #e50914;
+  display: flex;
+  justify-content: center;
+}
+
+.paymentScreen__subscription > div {
+  margin: 5rem auto 5rem auto;
+}
+
+.paymentScreen__subscription > div > h5 {
+  padding-bottom: 2px;
+  border-bottom: 1px solid white;
+}
+
+.paymentScreen__subscription > div > h1 {
+  margin: 0;
+}
+
+.paymentScreen__stripe {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.paymentScreen__stripe > div {
+  width: 100%;
+  max-width: 300px;
+  margin: 5rem auto 5rem auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .paymentScreen__subscription {
+    height: 100%;
+  }
+  .paymentScreen__stripe {
+    height: 100%;
+  }
+}

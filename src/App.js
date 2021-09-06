@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import HomeScreen from "./screens/HomeScreen";
 import Loader from './screens/Loader';
 import LoginScreen from "./screens/LoginScreen";
+import PaymentScreen from "./screens/PaymentScreen/PaymentScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
   setTimeout(() =>{
     setUserLoggedInStatusFound(true)
-  }, 2000);
+  }, 3000);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
@@ -44,6 +45,9 @@ function App() {
           <Switch>
             <Route path="/profile">
               <ProfileScreen/>
+            </Route>
+            <Route path="/payment">
+              <PaymentScreen/>
             </Route>
             <Route path="/">
               <HomeScreen />
