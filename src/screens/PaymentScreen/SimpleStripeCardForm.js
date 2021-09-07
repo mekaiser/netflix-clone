@@ -6,6 +6,8 @@ import {
   useStripe
 } from "@stripe/react-stripe-js";
 import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../features/userSlice";
 import "./SimpleStripeCardForm.css";
 import useResponsiveFontSize from "./useResponsiveFontSize";
 
@@ -34,10 +36,48 @@ const useOptions = () => {
   return options;
 };
 
-const SimpleStripeCardForm = () => {
+const SimpleStripeCardForm = ({ name, id }) => {
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
+  const user = useSelector(selectUser);
+
+  const insertSubscriberToDatabase = (paymentId) => {
+    // order-time and renew-time setup
+    const orderTime = new Date();
+    const orderTimeReadable = orderTime.toString();
+    const year = orderTime.getFullYear();
+    const month = orderTime.getMonth();
+    const day = orderTime.getDate();
+    const renewTime = new Date(year + 1, month, day).toString();
+
+    //subscription details
+    const subscriberData = {
+      email: user.email,
+      subscriptionDetails: [
+        {
+          planId: id,
+          planRole: name,
+          orderTime: orderTimeReadable,
+          renewTime: renewTime,
+          paymentId: paymentId,
+        },
+      ],
+    };
+
+    fetch("http://localhost:5000/insertSubscription", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(subscriberData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          alert("Subscription completed successfully");
+        }
+      });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +93,8 @@ const SimpleStripeCardForm = () => {
     if (error) {
       console.log("[error]", error);
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      // console.log("[PaymentMethod]", paymentMethod);
+      insertSubscriberToDatabase(paymentMethod.id);
     }
   };
   return (

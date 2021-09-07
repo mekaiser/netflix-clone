@@ -46,7 +46,7 @@ function App() {
             <Route path="/profile">
               <ProfileScreen/>
             </Route>
-            <Route path="/payment">
+            <Route path="/payment/:productId">
               <PaymentScreen/>
             </Route>
             <Route path="/">
