@@ -1,9 +1,6 @@
 .nav {
   position: fixed;
-  top: 0;
-  padding: 20px;
   width: 100%;
-  height: 30px;
   z-index: 1;
 
   /* Animations */
@@ -11,28 +8,74 @@
   transition: all 0.5s;
 }
 
-.nav__contents {
-  display: flex;
-  justify-content: space-between;
+.navbar__nav__ul {
+  width: 100%;
+}
+
+.navbar__nav__ul li a {
+  color: white !important;
+  margin: auto 0.6rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.navbar__nav__ul li a:hover {
+  color: #e50914 !important;
 }
 
 .nav__logo {
-  position: fixed;
-  top: 10px;
-  left: 0;
-  width: 80px;
-  object-fit: contain;
-  padding-left: 20px;
+  width: 100px;
+  padding-left: 10px;
   cursor: pointer;
 }
 
 .nav__avatar {
-  position: fixed;
-  right: 20px;
   width: 30px;
   cursor: pointer;
+}
+.nav__avatar__li {
+  margin-left: auto;
 }
 
 .nav__black {
   background-color: black;
+}
+
+.navbar__toggler__custom {
+  border: 3px solid rgba(255, 255, 255, 0.6) !important;
+}
+.navbar__toggler__custom:focus,
+.navbar__toggler__custom:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 767.98px) {
+  .nav__avatar {
+    width: 25px;
+    cursor: pointer;
+  }
+
+  .nav__avatar__li {
+    margin-left: 0;
+  }
+
+  .navbar__nav__ul li a {
+    margin: auto 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .nav__avatar {
+    width: 25px;
+    cursor: pointer;
+  }
+
+  .nav__avatar__li {
+    margin-left: 0;
+  }
+
+  .navbar__nav__ul li a {
+    margin: auto 1rem;
+  }
 }
