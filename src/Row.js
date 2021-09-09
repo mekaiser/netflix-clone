@@ -1,3 +1,5 @@
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useRef, useState } from "react";
 import axios from "./axios";
 import "./Row.css";
@@ -59,18 +61,20 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
               )
           )}
         </div>
-        <div className="row__slider__btns">
+        <div className="row__slider__right__div">
           <button
             onClick={() => handleRowScroll("left")}
             className="row__slider__right"
           >
-            Prev
+            <FontAwesomeIcon icon={faChevronLeft} />
           </button>
+        </div>
+        <div className="row__slider__left__div">
           <button
             onClick={() => handleRowScroll("right")}
             className="row__slider__left"
           >
-            Next
+            <FontAwesomeIcon icon={faChevronRight} />
           </button>
         </div>
       </div>
