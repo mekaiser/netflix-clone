@@ -51,8 +51,8 @@
 
 .loginScreen__button {
   position: fixed;
-  right: 20px;
   top: 20px;
+  right: 20px;
   padding: 10px 20px;
   font-size: 1rem;
   color: white;
@@ -64,6 +64,7 @@
 
 .loginScreen__logo {
   position: fixed;
+  top: 20px;
   left: 0;
   width: 150px;
   object-fit: contain;
@@ -74,9 +75,9 @@
   padding: 12px;
   outline-width: 0;
   font-size: 1.2rem;
-  width: 30%;
+  width: 40%;
   border: none;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .loginScreen__input {
@@ -118,5 +119,61 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .loginScreen__body {
+    top: 20%;
+  }
+
+  .loginScreen__body > h1 {
+    font-size: 2.5rem;
+  }
+
+  .loginScreen__body > h2 {
+    font-size: 1.5rem;
+  }
+
+  .loginScreen__body > h3 {
+    font-size: 1.2rem;
+  }
+
+  .loginScreen__input > form > input {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    display: block;
+  }
+
+  .loginScreen__getStarted {
+    padding: 8px 15px;
+    font-size: 1rem;
+  }
+
+  .loginScreen__logo {
+    width: 130px;
+  }
+
+  .loginScreen__button {
+    padding: 6px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .loginScreen__body {
+    top: 25%;
+  }
+
+  .loginScreen__input > form > input {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    display: block;
   }
 }

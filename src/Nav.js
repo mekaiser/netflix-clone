@@ -10,6 +10,7 @@ function Nav() {
   const [showNavBgOnScroll, handleShowNavBgOnScroll] = useState(false);
   const [showNavBgOnHamburgerClick, handleShowNavBgOnHamburgerClick] =
     useState(false);
+
   const history = useHistory();
 
   const transitionNavbar = () => {
@@ -25,24 +26,6 @@ function Nav() {
     return () => window.removeEventListener("scroll", transitionNavbar);
   }, []);
   return (
-    // <div className={`nav ${show && "nav__black"}`}>
-    //   <div className="nav__contents">
-    //     <img
-    //       onClick={() => history.push("/")}
-    //       className="nav__logo"
-    //       src={netflixLogo}
-    //       alt=""
-    //     />
-
-    //     <img
-    //       onClick={() => history.push("/profile")}
-    //       className="nav__avatar"
-    //       src="https://pbs.twimg.com/profile_images/1240119990411550720/hBEe3tdn_400x400.png"
-    //       alt=""
-    //     />
-    //   </div>
-    // </div>
-
     <nav
       className={`nav ${
         (showNavBgOnScroll || showNavBgOnHamburgerClick) && "nav__black"

@@ -1,11 +1,12 @@
 .nav {
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 1;
 
   /* Animations */
-  transition-timing-function: ease-in;
-  transition: all 0.5s;
+  /* transition-timing-function: ease-in;
+  transition: all 0.5s; */
 }
 
 .navbar__nav__ul {
@@ -17,6 +18,7 @@
   margin: auto 0.6rem;
   font-size: 1.1rem;
   font-weight: 600;
+  line-height: 2rem;
 }
 
 .navbar__nav__ul li a:hover {
@@ -25,7 +27,7 @@
 
 .nav__logo {
   width: 100px;
-  padding-left: 10px;
+  margin-left: 10px;
   cursor: pointer;
 }
 
@@ -42,12 +44,18 @@
 }
 
 .navbar__toggler__custom {
+  margin-right: 10px;
   border: 3px solid rgba(255, 255, 255, 0.6) !important;
 }
+
 .navbar__toggler__custom:focus,
 .navbar__toggler__custom:active {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.navbar__padding__onScrollDown {
+  /* padding-top: 2.2rem; */
 }
 
 @media (max-width: 767.98px) {
@@ -59,10 +67,6 @@
   .nav__avatar__li {
     margin-left: 0;
   }
-
-  .navbar__nav__ul li a {
-    margin: auto 1rem;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -73,9 +77,5 @@
 
   .nav__avatar__li {
     margin-left: 0;
-  }
-
-  .navbar__nav__ul li a {
-    margin: auto 1rem;
   }
 }

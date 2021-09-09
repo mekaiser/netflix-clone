@@ -8,7 +8,7 @@
 .banner__contents {
   margin-left: 30px;
   padding-top: 140px;
-  height: 190px;
+  height: 100%;
 }
 
 .banner__title {
@@ -49,12 +49,15 @@
   padding: 0.6rem 2rem;
   margin-right: 1rem;
 }
+
 .banner__playButton {
   background-color: #e50914;
 }
+
 .banner__listButton {
-  background-color: black;
+  background-color: gray;
 }
+
 .banner__playButton:hover,
 .banner__listButton:hover {
   color: #000;
