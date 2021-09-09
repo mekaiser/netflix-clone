@@ -5,8 +5,8 @@
   z-index: 1;
 
   /* Animations */
-  /* transition-timing-function: ease-in;
-  transition: all 0.5s; */
+  transition-timing-function: ease-in;
+  transition: all 0.5s;
 }
 
 .navbar__nav__ul {
@@ -52,10 +52,6 @@
 .navbar__toggler__custom:active {
   outline: none !important;
   box-shadow: none !important;
-}
-
-.navbar__padding__onScrollDown {
-  /* padding-top: 2.2rem; */
 }
 
 @media (max-width: 767.98px) {
