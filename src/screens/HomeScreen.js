@@ -1,5 +1,6 @@
 import React from "react";
 import Banner from "../Banner";
+import Footer from "../Footer";
 import Nav from "../Nav";
 import requests from "../Requests";
 import Row from "../Row";
@@ -21,6 +22,8 @@ function HomeScreen() {
       <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
       <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
       <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+      <hr className="hr__before__footer"/>
+      <Footer/>
     </div>
   );
 }

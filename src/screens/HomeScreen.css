@@ -3,3 +3,9 @@
   min-height: 100vh;
   height: 100%;
 }
+
+.hr__before__footer {
+  color: gray;
+  width: 90%;
+  margin: 20px auto 40px auto;
+}
