@@ -11,13 +11,13 @@ function PlanScreen() {
   const [subscriptionDetails, setSubscriptionDetails] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/loadPlans")
+    fetch("https://limitless-ravine-50377.herokuapp.com/loadPlans")
       .then((res) => res.json())
       .then((plans) => setProducts(plans));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:5000/loadSubscriptions/" + user.email)
+    fetch("https://limitless-ravine-50377.herokuapp.com/loadSubscriptions/" + user.email)
       .then((res) => res.json())
       .then((subscriptions) => {
         if (subscriptions) {

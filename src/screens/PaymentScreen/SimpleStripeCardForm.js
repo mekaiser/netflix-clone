@@ -1,9 +1,9 @@
 import {
-  CardCvcElement,
-  CardExpiryElement,
-  CardNumberElement,
-  useElements,
-  useStripe
+    CardCvcElement,
+    CardExpiryElement,
+    CardNumberElement,
+    useElements,
+    useStripe
 } from "@stripe/react-stripe-js";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -65,7 +65,7 @@ const SimpleStripeCardForm = ({ name, id }) => {
       ],
     };
 
-    fetch("http://localhost:5000/insertSubscription", {
+    fetch("https://limitless-ravine-50377.herokuapp.com/insertSubscription", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(subscriberData),

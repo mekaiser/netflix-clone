@@ -16,7 +16,7 @@ function PaymentScreen() {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/loadSinglePlan/" + productId.productId)
+    fetch("https://limitless-ravine-50377.herokuapp.com/loadSinglePlan/" + productId.productId)
       .then((res) => res.json())
       .then((selectedProduct) => {
         setProduct(selectedProduct[0]);
