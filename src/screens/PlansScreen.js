@@ -19,6 +19,7 @@ function PlansScreen() {
     )
       .then((res) => res.json())
       .then((subscriptions) => {
+        console.log(subscriptions);
         setProducts(plans);
         if (subscriptions) {
           setSubscriptionDetails(subscriptions[0]?.subscriptionDetails);
@@ -44,6 +45,14 @@ function PlansScreen() {
         <MiniLoader />
       ) : (
         <div className="planScreen">
+          {subscriptionDetails?.map((subscriptionDetail) => {
+            return (
+              <h6>
+                Renewal date ({subscriptionDetail.planRole}):{" "}
+                {new Date(subscriptionDetail.renewTime).toLocaleDateString()}
+              </h6>
+            );
+          })}
           {products.map((product) => {
             return (
               <div className="planScreen__plan">

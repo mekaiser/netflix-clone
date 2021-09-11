@@ -4,14 +4,14 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "./axios";
 import "./Row.css";
 
-function Row({ title, fetchUrl, isLargeRow = false }) {
-  const [movies, setMovies] = useState([]);
+function Row({ title, mediaType = false, fetchUrl, isLargeRow = false, handleSetMovieOrTvClicked}) {
+  const [moviesOrTvs, setMoviesOrTvs] = useState([]);
   const rowScroll = useRef(null);
   const base_url = "https://image.tmdb.org/t/p/original/";
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      setMoviesOrTvs(request.data.results);
       return request;
     }
     fetchData();
@@ -39,23 +39,24 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
       <h2>{title}</h2>
       <div className="row__posters__container">
         <div className="row__posters" ref={rowScroll}>
-          {movies.map(
-            (movie) =>
-              ((isLargeRow && movie.poster_path) ||
-                (!isLargeRow && movie.backdrop_path)) && (
+          {moviesOrTvs.map(
+            (movieOrTv) =>
+              ((isLargeRow && movieOrTv.poster_path) ||
+                (!isLargeRow && movieOrTv.backdrop_path)) && (
                 <div>
                   <img
                     className={`row__poster ${
                       isLargeRow && "row__posterLarge"
                     }`}
-                    key={movie.id}
+                    key={movieOrTv.id}
                     src={`${base_url}${
-                      isLargeRow ? movie.poster_path : movie.backdrop_path
+                      isLargeRow ? movieOrTv.poster_path : movieOrTv.backdrop_path
                     }`}
-                    alt={movie.name}
+                    alt={movieOrTv.name}
+                    onClick={() => handleSetMovieOrTvClicked(movieOrTv, mediaType)}
                   ></img>
                   <p className="row__poster__name">
-                    {movie.original_name || movie.original_title}
+                    {movieOrTv.original_name || movieOrTv.original_title}
                   </p>
                 </div>
               )

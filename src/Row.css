@@ -33,6 +33,7 @@
   object-fit: contain;
   margin-right: 12px;
   transition: transform 450ms;
+  cursor: pointer;
 }
 .row__poster:hover {
   transform: scale(1.06);
