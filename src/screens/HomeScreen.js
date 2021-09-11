@@ -16,6 +16,7 @@ function HomeScreen() {
     newMovieOrTvClicked.mediaType = mediaType;
     setFirstTimeLoad(false);
     setMovieOrTvClicked(movieOrTvClicked);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <div className="homeScreen">
