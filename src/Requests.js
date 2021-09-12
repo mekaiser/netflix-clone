@@ -14,7 +14,13 @@ const requests = {
   },
   fetchTvById: function(tvId) {
     return `/tv/${tvId}?api_key=${API_KEY}&language=en-US`;
-  }
+  },
+  fetchMovieTrailer: function(movieTrailerKey) {
+    return `/movie/${movieTrailerKey}/videos?api_key=${API_KEY}&language=en-US`;
+  },
+  fetchTvTrailer: function(tvTrailerKey) {
+    return `/tv/${tvTrailerKey}/videos?api_key=${API_KEY}&language=en-US`;
+  },
 };
 
 export default requests;
