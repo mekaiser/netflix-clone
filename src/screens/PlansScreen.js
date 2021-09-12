@@ -19,7 +19,6 @@ function PlansScreen() {
     )
       .then((res) => res.json())
       .then((subscriptions) => {
-        console.log(subscriptions);
         setProducts(plans);
         if (subscriptions) {
           setSubscriptionDetails(subscriptions[0]?.subscriptionDetails);

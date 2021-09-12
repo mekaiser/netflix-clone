@@ -1,9 +1,9 @@
 import {
-    CardCvcElement,
-    CardExpiryElement,
-    CardNumberElement,
-    useElements,
-    useStripe
+  CardCvcElement,
+  CardExpiryElement,
+  CardNumberElement,
+  useElements,
+  useStripe
 } from "@stripe/react-stripe-js";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -72,7 +72,6 @@ const SimpleStripeCardForm = ({ name, id }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data) {
           alert("Subscription completed successfully");
         }
