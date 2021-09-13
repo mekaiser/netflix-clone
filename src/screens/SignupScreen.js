@@ -43,7 +43,7 @@ function SignupScreen() {
   return (
     <div className="signupScreen signupScreen__animation">
       <form onSubmit={formSubmit}>
-        <h1>Sign In</h1>
+        <h1>{accountSignUp ? "Sign Up" : "Sign In"}</h1>
         <input
           className="signupScreen__input"
           ref={emailRef}
