@@ -7,6 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { selectUser } from "../../features/userSlice";
 import "./SimpleStripeCardForm.css";
 import useResponsiveFontSize from "./useResponsiveFontSize";
@@ -41,6 +42,7 @@ const SimpleStripeCardForm = ({ name, id, handleAfterPaymentStatusLoader }) => {
   const elements = useElements();
   const options = useOptions();
   const user = useSelector(selectUser);
+  const history = useHistory();
 
   const insertSubscriberToDatabase = (paymentId) => {
     // order-time and renew-time setup
@@ -92,9 +94,11 @@ const SimpleStripeCardForm = ({ name, id, handleAfterPaymentStatusLoader }) => {
     });
     if (error) {
       console.log("[error]", error);
+      history.push("/");
       handleAfterPaymentStatusLoader(false);
     } else {
       insertSubscriberToDatabase(paymentMethod.id);
+      history.push("/");
       handleAfterPaymentStatusLoader(false);
     }
   };
