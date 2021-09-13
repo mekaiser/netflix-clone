@@ -75,7 +75,9 @@ const SimpleStripeCardForm = ({ name, id, handleAfterPaymentStatusLoader }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data) {
+          handleAfterPaymentStatusLoader(false);
           alert("Subscription completed successfully");
+          history.push("/");
         }
       });
   };
@@ -94,12 +96,9 @@ const SimpleStripeCardForm = ({ name, id, handleAfterPaymentStatusLoader }) => {
     });
     if (error) {
       console.log("[error]", error);
-      history.push("/");
       handleAfterPaymentStatusLoader(false);
     } else {
       insertSubscriberToDatabase(paymentMethod.id);
-      history.push("/");
-      handleAfterPaymentStatusLoader(false);
     }
   };
   return (
