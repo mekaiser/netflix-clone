@@ -1,11 +1,47 @@
-import React, { useState } from "react";
-import netflixLogo from '../images/netflix-logo.png';
+import React, { useRef, useState } from "react";
+import netflixLogo from "../images/netflix-logo.png";
 import "./LoginScreen.css";
-import SignupScreen from "./SignupScreen";
+import SignUpOrSignInScreen from "./SignUpOrSignInScreen";
 
 function LoginScreen() {
-  const [signIn, setSignIn] = useState(false);
   const [domLoaded, setDomLoaded] = useState(false);
+  const [goToSignUpOrSignInScreen, setGoToSignUpOrSignInScreen] =
+    useState(false);
+  const [goToSignInScreen, setGoToSignInScreen] = useState(false);
+  const [signUpEmailOfGetStarted, setSignUpEmailOfGetStarted] = useState(null);
+  const [signUpFromGetStarted, setSignUpFromGetStarted] = useState(false);
+  const [signUpOrSignInStateWillWork, setSignUpOrSignInStateWillWork] =
+    useState(true);
+  const [signUpProcessOngoing, setSignUpProcessOngoing] = useState(true);
+
+  const emailRefOfGetStarted = useRef(null);
+
+  const handleEmailRefOfGetStarted = () => {
+    console.log(emailRefOfGetStarted.current.value);
+    setSignUpEmailOfGetStarted(emailRefOfGetStarted.current.value);
+  };
+
+  const handleSignUpOrSignInFromGetStarted = (
+    state,
+    goToSignInScreenState = false,
+    signUpOrSignInStateWillWorkState,
+    signUpProcessState = true
+  ) => {
+    setSignUpFromGetStarted(state);
+    setGoToSignUpOrSignInScreen(true);
+    setGoToSignInScreen(goToSignInScreenState);
+    setSignUpOrSignInStateWillWork(signUpOrSignInStateWillWorkState);
+    handleSetSignUpProcessOngoing(signUpProcessState);
+  };
+
+  const handleSetSignUpProcessOngoing = (state) => {
+    setSignUpProcessOngoing(state);
+  };
+
+  const handleSignUpOrSignInStateWillWork = (state) => {
+    setSignUpOrSignInStateWillWork(state);
+  };
+
   const hadnleDomLoad = (e) => {
     setDomLoaded(true);
   };
@@ -13,20 +49,34 @@ function LoginScreen() {
   return (
     <div className="loginScreen">
       <div className="loginScreen__background">
-        <img
-          className="loginScreen__logo"
-          src={netflixLogo}
-          alt=""
-        />
-        <button onClick={() => setSignIn(true)} className="loginScreen__button">
+        <img className="loginScreen__logo" src={netflixLogo} alt="" />
+        <button
+          onClick={() =>
+            handleSignUpOrSignInFromGetStarted(false, true, false, false)
+          }
+          className="loginScreen__button"
+        >
           Sign In
         </button>
 
         <div className="loginScreen__gradient"></div>
       </div>
       <div className="loginScreen__body">
-        {signIn ? (
-          <SignupScreen />
+        {goToSignUpOrSignInScreen ? (
+          <SignUpOrSignInScreen
+            signUpEmailOfGetStarted={signUpEmailOfGetStarted}
+            goToSignInScreen={goToSignInScreen}
+            signUpFromGetStarted={signUpFromGetStarted}
+            handleSignUpOrSignInFromGetStarted={
+              handleSignUpOrSignInFromGetStarted
+            }
+            signUpOrSignInStateWillWork={signUpOrSignInStateWillWork}
+            handleSignUpOrSignInStateWillWork={
+              handleSignUpOrSignInStateWillWork
+            }
+            handleSetSignUpProcessOngoing={handleSetSignUpProcessOngoing}
+            signUpProcessOngoing={signUpProcessOngoing}
+          />
         ) : (
           <>
             <h1 className={`${domLoaded && "loginScreen__animation"}`}>
@@ -45,9 +95,16 @@ function LoginScreen() {
               }`}
             >
               <form>
-                <input type="email" placeholder="Email Address" />
+                <input
+                  onChange={handleEmailRefOfGetStarted}
+                  type="email"
+                  ref={emailRefOfGetStarted}
+                  placeholder="Email Address"
+                />
                 <button
-                  onClick={() => setSignIn(true)}
+                  onClick={() =>
+                    handleSignUpOrSignInFromGetStarted(true, false, true)
+                  }
                   className="loginScreen__getStarted"
                 >
                   Get Started

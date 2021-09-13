@@ -2,18 +2,32 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword
 } from "firebase/auth";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { auth } from "../firebase";
-import "./SignupScreen.css";
+import "./SignUpOrSignInScreen.css";
 
-function SignupScreen() {
-  const [accountSignUp, setAccountSignUp] = useState(false);
+function SignUpOrSignInScreen({
+  signUpEmailOfGetStarted,
+  goToSignInScreen,
+  signUpFromGetStarted,
+  handleSignUpOrSignInFromGetStarted,
+  signUpOrSignInStateWillWork,
+  handleSignUpOrSignInStateWillWork,
+  handleSetSignUpProcessOngoing,
+  signUpProcessOngoing,
+}) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  const handleSignUp = (state, goToSignInScreenState = false) => {
+    handleSignUpOrSignInFromGetStarted(false, goToSignInScreenState);
+    handleSignUpOrSignInStateWillWork(true);
+    handleSetSignUpProcessOngoing(state);
+  };
+
   const formSubmit = (e) => {
     e.preventDefault();
-    if (accountSignUp) {
+    if (signUpProcessOngoing) {
       createUserWithEmailAndPassword(
         auth,
         emailRef.current.value,
@@ -25,8 +39,7 @@ function SignupScreen() {
         .catch((error) => {
           alert(error.message);
         });
-    } 
-    else if (!accountSignUp) {
+    } else if (!signUpProcessOngoing) {
       signInWithEmailAndPassword(
         auth,
         emailRef.current.value,
@@ -43,12 +56,19 @@ function SignupScreen() {
   return (
     <div className="signupScreen signupScreen__animation">
       <form onSubmit={formSubmit}>
-        <h1>{accountSignUp ? "Sign Up" : "Sign In"}</h1>
+        <h1>
+          {!goToSignInScreen ||
+          signUpFromGetStarted ||
+          (signUpOrSignInStateWillWork && signUpProcessOngoing)
+            ? "Sign Up"
+            : "Sign In"}
+        </h1>
         <input
           className="signupScreen__input"
           ref={emailRef}
           placeholder="Email"
           type="Email"
+          defaultValue={signUpEmailOfGetStarted && signUpEmailOfGetStarted}
           required
         />
         <input
@@ -58,7 +78,9 @@ function SignupScreen() {
           type="password"
           required
         />
-        {accountSignUp ? (
+        {!goToSignInScreen ||
+        signUpFromGetStarted ||
+        (signUpOrSignInStateWillWork && signUpProcessOngoing) ? (
           <input
             className="signupScreen__submit"
             type="submit"
@@ -74,19 +96,25 @@ function SignupScreen() {
 
         <h5>
           <span className="signupScreen__gray">
-            {accountSignUp ? "Already have an account?" : "New to Netflix?"}{" "}
+            {!goToSignInScreen ||
+            signUpFromGetStarted ||
+            (signUpOrSignInStateWillWork && signUpProcessOngoing)
+              ? "Already have an account?"
+              : "New to Netflix?"}{" "}
           </span>
-          {accountSignUp ? (
+          {!goToSignInScreen ||
+          signUpFromGetStarted ||
+          (signUpOrSignInStateWillWork && signUpProcessOngoing) ? (
             <span
               className="signupScreen__link"
-              onClick={() => setAccountSignUp(false)}
+              onClick={() => handleSignUp(false, true)}
             >
               Sign In.
             </span>
           ) : (
             <span
               className="signupScreen__link"
-              onClick={() => setAccountSignUp(true)}
+              onClick={() => handleSignUp(true)}
             >
               Sign Up now.
             </span>
@@ -97,4 +125,4 @@ function SignupScreen() {
   );
 }
 
-export default SignupScreen;
+export default SignUpOrSignInScreen;
