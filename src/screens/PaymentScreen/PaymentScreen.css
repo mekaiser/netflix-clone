@@ -1,5 +1,12 @@
+.after__payment__status__loader__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .paymentScreen__container {
   height: 100vh;
+  width: 100vw;
   background-color: white;
 }
 

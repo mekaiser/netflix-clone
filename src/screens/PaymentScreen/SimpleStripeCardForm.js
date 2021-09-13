@@ -36,7 +36,7 @@ const useOptions = () => {
   return options;
 };
 
-const SimpleStripeCardForm = ({ name, id }) => {
+const SimpleStripeCardForm = ({ name, id, handleAfterPaymentStatusLoader }) => {
   const stripe = useStripe();
   const elements = useElements();
   const options = useOptions();
@@ -80,6 +80,7 @@ const SimpleStripeCardForm = ({ name, id }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    handleAfterPaymentStatusLoader(true);
 
     if (!stripe || !elements) {
       return;
@@ -91,9 +92,10 @@ const SimpleStripeCardForm = ({ name, id }) => {
     });
     if (error) {
       console.log("[error]", error);
+      handleAfterPaymentStatusLoader(false);
     } else {
-      // console.log("[PaymentMethod]", paymentMethod);
       insertSubscriberToDatabase(paymentMethod.id);
+      handleAfterPaymentStatusLoader(false);
     }
   };
   return (

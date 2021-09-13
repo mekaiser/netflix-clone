@@ -14,21 +14,35 @@ function PaymentScreen() {
   const productId = useParams();
   const [product, setProduct] = useState([]);
   const [loader, setLoader] = useState(true);
+  const [afterPaymentStatusLoader, setAfterPaymentStatusLoader] =
+    useState(false);
 
   useEffect(() => {
-    fetch("https://limitless-ravine-50377.herokuapp.com/loadSinglePlan/" + productId.productId)
+    fetch(
+      "https://limitless-ravine-50377.herokuapp.com/loadSinglePlan/" +
+        productId.productId
+    )
       .then((res) => res.json())
       .then((selectedProduct) => {
         setProduct(selectedProduct[0]);
         setLoader(false);
       });
   }, [productId.productId]);
+
+  const handleAfterPaymentStatusLoader = (status) => {
+    setAfterPaymentStatusLoader(status);
+  }
   return (
     <>
       {loader ? (
         <Loader />
       ) : (
         <div className="paymentScreen__container">
+          {afterPaymentStatusLoader && (
+            <div className="after__payment__status__loader__container">
+              <Loader />
+            </div>
+          )}
           <div className="row paymentScreen__container__row">
             <div className="col-md-6">
               <div className="paymentScreen__subscription">
@@ -48,6 +62,7 @@ function PaymentScreen() {
                       name={product.name}
                       price={product.price}
                       id={product.id}
+                      handleAfterPaymentStatusLoader={handleAfterPaymentStatusLoader}
                     />
                   </Elements>
                 </div>
