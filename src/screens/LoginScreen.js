@@ -10,36 +10,27 @@ function LoginScreen() {
   const [goToSignInScreen, setGoToSignInScreen] = useState(false);
   const [signUpEmailOfGetStarted, setSignUpEmailOfGetStarted] = useState(null);
   const [signUpFromGetStarted, setSignUpFromGetStarted] = useState(false);
-  const [signUpOrSignInStateWillWork, setSignUpOrSignInStateWillWork] =
-    useState(true);
   const [signUpProcessOngoing, setSignUpProcessOngoing] = useState(true);
 
   const emailRefOfGetStarted = useRef(null);
 
   const handleEmailRefOfGetStarted = () => {
-    console.log(emailRefOfGetStarted.current.value);
     setSignUpEmailOfGetStarted(emailRefOfGetStarted.current.value);
   };
 
   const handleSignUpOrSignInFromGetStarted = (
     state,
     goToSignInScreenState = false,
-    signUpOrSignInStateWillWorkState,
     signUpProcessState = true
   ) => {
     setSignUpFromGetStarted(state);
     setGoToSignUpOrSignInScreen(true);
     setGoToSignInScreen(goToSignInScreenState);
-    setSignUpOrSignInStateWillWork(signUpOrSignInStateWillWorkState);
     handleSetSignUpProcessOngoing(signUpProcessState);
   };
 
   const handleSetSignUpProcessOngoing = (state) => {
     setSignUpProcessOngoing(state);
-  };
-
-  const handleSignUpOrSignInStateWillWork = (state) => {
-    setSignUpOrSignInStateWillWork(state);
   };
 
   const hadnleDomLoad = (e) => {
@@ -52,7 +43,7 @@ function LoginScreen() {
         <img className="loginScreen__logo" src={netflixLogo} alt="" />
         <button
           onClick={() =>
-            handleSignUpOrSignInFromGetStarted(false, true, false, false)
+            handleSignUpOrSignInFromGetStarted(false, true, false)
           }
           className="loginScreen__button"
         >
@@ -69,10 +60,6 @@ function LoginScreen() {
             signUpFromGetStarted={signUpFromGetStarted}
             handleSignUpOrSignInFromGetStarted={
               handleSignUpOrSignInFromGetStarted
-            }
-            signUpOrSignInStateWillWork={signUpOrSignInStateWillWork}
-            handleSignUpOrSignInStateWillWork={
-              handleSignUpOrSignInStateWillWork
             }
             handleSetSignUpProcessOngoing={handleSetSignUpProcessOngoing}
             signUpProcessOngoing={signUpProcessOngoing}

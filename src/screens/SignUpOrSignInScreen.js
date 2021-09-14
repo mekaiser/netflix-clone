@@ -11,8 +11,6 @@ function SignUpOrSignInScreen({
   goToSignInScreen,
   signUpFromGetStarted,
   handleSignUpOrSignInFromGetStarted,
-  signUpOrSignInStateWillWork,
-  handleSignUpOrSignInStateWillWork,
   handleSetSignUpProcessOngoing,
   signUpProcessOngoing,
 }) {
@@ -21,7 +19,6 @@ function SignUpOrSignInScreen({
 
   const handleSignUp = (state, goToSignInScreenState = false) => {
     handleSignUpOrSignInFromGetStarted(false, goToSignInScreenState);
-    handleSignUpOrSignInStateWillWork(true);
     handleSetSignUpProcessOngoing(state);
   };
 
@@ -59,7 +56,7 @@ function SignUpOrSignInScreen({
         <h1>
           {!goToSignInScreen ||
           signUpFromGetStarted ||
-          (signUpOrSignInStateWillWork && signUpProcessOngoing)
+          signUpProcessOngoing
             ? "Sign Up"
             : "Sign In"}
         </h1>
@@ -80,7 +77,7 @@ function SignUpOrSignInScreen({
         />
         {!goToSignInScreen ||
         signUpFromGetStarted ||
-        (signUpOrSignInStateWillWork && signUpProcessOngoing) ? (
+        signUpProcessOngoing ? (
           <input
             className="signupScreen__submit"
             type="submit"
@@ -98,13 +95,13 @@ function SignUpOrSignInScreen({
           <span className="signupScreen__gray">
             {!goToSignInScreen ||
             signUpFromGetStarted ||
-            (signUpOrSignInStateWillWork && signUpProcessOngoing)
+            signUpProcessOngoing
               ? "Already have an account?"
               : "New to Netflix?"}{" "}
           </span>
           {!goToSignInScreen ||
           signUpFromGetStarted ||
-          (signUpOrSignInStateWillWork && signUpProcessOngoing) ? (
+          signUpProcessOngoing ? (
             <span
               className="signupScreen__link"
               onClick={() => handleSignUp(false, true)}
