@@ -1,7 +1,7 @@
 # Netflix Clone
 
 <p align="center">
-<img align="center" width="1000" height="563" src="https://github.com/mekaiser/netflix-clone/blob/main/src/images/Netflix%20Clone.gif?raw=true">
+<img align="center" width="640" height="360" src="https://github.com/mekaiser/netflix-clone/blob/main/src/images/Netflix%20Clone.gif?raw=true">
 </p>
 
 A compact web application to browse Movies and TV shows and even watch their trailers. This includes Stripe Payment Processing and Firebase Authentication. API provided by themoviedb.org.
