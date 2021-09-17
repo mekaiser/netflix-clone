@@ -9,7 +9,7 @@ A compact web application to browse Movies and TV shows and even watch their tra
 ## FEATURES
 
 - Random movies in the banner upon each refresh
-- Carousel of movies coming from the TMDB API
+- Carousel of movies and tv shows coming from the TMDB API
 - Click any movie/show and then click the play button from the banner to watch its trailer
 - Sign up and sign in via email
 - Subscription system to Netflix plans
