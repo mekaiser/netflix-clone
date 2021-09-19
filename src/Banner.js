@@ -28,11 +28,13 @@ function Banner({
             requests.fetchTvTrailer(firstTimeLoadedBanner?.id)
           );
 
-          firstTimeLoadedBanner.ytTrailerIframe = returnYTTrailerIframeURL(
+          const firstTimeLoadedBannerCopy = {...firstTimeLoadedBanner}
+
+          firstTimeLoadedBannerCopy.ytTrailerIframe = returnYTTrailerIframeURL(
             firstTimeLoadedBannerTrailers.data?.results[0]?.key
           );
 
-          handleSetMovieOrTvForBanner(firstTimeLoadedBanner);
+          handleSetMovieOrTvForBanner(firstTimeLoadedBannerCopy);
         }
       }
       if (!firstTimeLoad && movieOrTvClicked?.id !== movieOrTvForBanner?.id) {
@@ -47,25 +49,27 @@ function Banner({
           const movieTrailers = await axios.get(
             requests.fetchMovieTrailer(movieDataWithTrailerIframe?.id)
           );
+          const movieDataWithTrailerIframeCopy = {...movieDataWithTrailerIframe};
           if (movieTrailers.data.results[0]?.key) {
-            movieDataWithTrailerIframe.ytTrailerIframe =
+            movieDataWithTrailerIframeCopy.ytTrailerIframe =
               returnYTTrailerIframeURL(movieTrailers.data?.results[0]?.key);
           }
-          handleSetMovieOrTvForBanner(movieDataWithTrailerIframe);
+          handleSetMovieOrTvForBanner(movieDataWithTrailerIframeCopy);
         } else if (
           movieOrTvClicked?.mediaType === "tv" ||
           movieOrTvClicked?.media_type === "tv"
         ) {
           request = await axios.get(requests.fetchTvById(movieOrTvClicked?.id));
-          const tvDataWithYTTrailerIframe = request.data;
+          const tvDataWithTrailerIframe = request.data;
           const tvTrailers = await axios.get(
-            requests.fetchTvTrailer(tvDataWithYTTrailerIframe?.id)
+            requests.fetchTvTrailer(tvDataWithTrailerIframe?.id)
           );
+          const tvDataWithTrailerIframeCopy = {...tvDataWithTrailerIframe}
           if (tvTrailers.data?.results[0]?.key) {
-            tvDataWithYTTrailerIframe.ytTrailerIframe =
+            tvDataWithTrailerIframeCopy.ytTrailerIframe =
               returnYTTrailerIframeURL(tvTrailers.data?.results[0]?.key);
           }
-          handleSetMovieOrTvForBanner(tvDataWithYTTrailerIframe);
+          handleSetMovieOrTvForBanner(tvDataWithTrailerIframeCopy);
         }
       }
       return request;

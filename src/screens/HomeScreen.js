@@ -14,10 +14,10 @@ function HomeScreen() {
   const [showYTModal, setShowYTModal] = useState(false);
 
   const handleSetMovieOrTvClicked = (movieOrTvClicked, mediaType) => {
-    const newMovieOrTvClicked = movieOrTvClicked;
+    const newMovieOrTvClicked = {...movieOrTvClicked};
     newMovieOrTvClicked.mediaType = mediaType;
     setFirstTimeLoad(false);
-    setMovieOrTvClicked(movieOrTvClicked);
+    setMovieOrTvClicked(newMovieOrTvClicked);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 

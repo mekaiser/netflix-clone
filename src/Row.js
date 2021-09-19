@@ -19,15 +19,11 @@ function Row({ title, mediaType = false, fetchUrl, isLargeRow = false, handleSet
 
   const handleRowScroll = (leftOrRight) => {
     if (leftOrRight === "left") {
-      // rowScroll.current.scrollLeft -= 150;
-
       rowScroll.current.scrollTo({
         left: rowScroll.current.scrollLeft - 100,
         behavior: "smooth",
       });
     } else if (leftOrRight === "right") {
-      // rowScroll.current.scrollLeft += 150;
-
       rowScroll.current.scrollTo({
         left: rowScroll.current.scrollLeft + 100,
         behavior: "smooth",
